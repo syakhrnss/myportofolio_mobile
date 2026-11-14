@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -12,11 +12,11 @@ class MyHomePage extends StatelessWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String npm = "2506544076";
-  final String nama = "Arsya Khairunissa Budiman";
-  final String kelas = "PBP E";
+  static const String npm = "2506544076";
+  static const String nama = "Arsya Khairunissa Budiman";
+  static const String kelas = "PBP E";
 
-  final List<ItemHomepage> items = [
+  static const List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
     ItemHomepage("Lihat Experience", Icons.work, Colors.orange),
@@ -47,7 +47,7 @@ class MyHomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Baris horizontal untuk menampilkan 3 InfoCard secara sejajar.
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InfoCard(title: 'NPM', content: npm),
@@ -135,7 +135,7 @@ class ItemHomepage {
   final IconData icon;
   final Color color;
 
-  ItemHomepage(this.name, this.icon, this.color);
+  const ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
