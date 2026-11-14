@@ -12,9 +12,9 @@ class MyHomePage extends StatelessWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String npm = "2406000001";
-  final String nama = "Burhan";
-  final String kelas = "PBP A";
+  final String npm = "2506544076";
+  final String nama = "Arsya Khairunissa Budiman";
+  final String kelas = "PBP E";
 
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder),
