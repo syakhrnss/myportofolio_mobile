@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
+/// Halaman utama aplikasi MyPortfolio Mobile.
+///
+/// Menampilkan identitas pemilik portofolio lewat tiga [InfoCard] dan
+/// menu aksi portofolio lewat sekumpulan [ItemCard] dalam bentuk grid.
+/// Berupa [StatelessWidget] karena seluruh datanya statis.
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   static const String npm = "2506544076";
   static const String nama = "Arsya Khairunissa Budiman";
   static const String kelas = "PBP E";
 
+  /// Daftar menu aksi. Warna disimpan di model sehingga [ItemCard]
+  /// tidak perlu logika pewarnaan sendiri.
   static const List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
@@ -130,6 +128,7 @@ class InfoCard extends StatelessWidget {
   }
 }
 
+/// Model data satu tombol menu yaitu nama, ikon, dan warna latarnya.
 class ItemHomepage {
   final String name;
   final IconData icon;
@@ -138,6 +137,8 @@ class ItemHomepage {
   const ItemHomepage(this.name, this.icon, this.color);
 }
 
+/// Kartu tombol aksi. Warna latar diambil dari [ItemHomepage.color],
+/// dan menekannya memunculkan SnackBar dengan nama tombol terkait.
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
 
