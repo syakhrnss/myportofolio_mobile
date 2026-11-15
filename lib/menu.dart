@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/section_page.dart';
 
 /// Halaman utama aplikasi MyPortfolio Mobile.
 ///
@@ -14,11 +15,33 @@ class MyHomePage extends StatelessWidget {
 
   /// Daftar menu aksi. Warna disimpan di model sehingga [ItemCard]
   /// tidak perlu logika pewarnaan sendiri.
-  static const List<ItemHomepage> items = [
-    ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
+    static const List<ItemHomepage> items = [
+    ItemHomepage(
+      "Lihat Proyek",
+      Icons.folder,
+      Colors.blue,
+      entries: [
+          PortfolioEntry("Smart Road Crack Inspection System", "AI-powered road crack inspection system using a MobileNetV2-based U-Net architecture to perform semantic segmentation and identify crack regions from road images"),
+        PortfolioEntry("Kitchenware Sales Dashboard", "Developed an interactive sales dashboard to analyze business performance, sales trends, product performance, and order completion metrics."),
+      ],
+    ),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
-    ItemHomepage("Lihat Experience", Icons.work, Colors.orange),
-    ItemHomepage("Lihat Education", Icons.school, Colors.purple),
+    ItemHomepage(
+      "Lihat Experience",
+      Icons.work,
+      Colors.orange,
+      entries: [
+        PortfolioEntry("Staff of Data Science Academy", "Invited and coordinated with mentors and guest speakers to support the execution of bootcamp sessions."),
+      ],
+    ),
+    ItemHomepage(
+      "Lihat Education",
+      Icons.school,
+      Colors.purple,
+      entries: [
+        PortfolioEntry("Universitas Indonesia", "Sistem Informasi"),
+      ],
+    ),
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
@@ -137,8 +160,10 @@ class ItemHomepage {
   final String name;
   final IconData icon;
   final Color color;
+  final List<PortfolioEntry>? entries;
 
-  const ItemHomepage(this.name, this.icon, this.color);
+
+  const ItemHomepage(this.name, this.icon, this.color, {this.entries});
 }
 
 /// Kartu tombol aksi. Warna latar diambil dari [ItemHomepage.color],
@@ -179,6 +204,20 @@ class ItemCard extends StatelessWidget {
                 ),
               ),
             );
+          // Hanya item yang punya entries yang membuka halaman section.
+          final entries = item.entries;
+          if (entries != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => SectionPage(
+                  title: item.name,
+                  icon: item.icon,
+                  color: item.color,
+                  entries: entries,
+                ),
+              ),
+            );
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
