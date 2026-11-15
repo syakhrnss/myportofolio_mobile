@@ -182,6 +182,20 @@ class ItemCard extends StatelessWidget {
                 ),
               ),
             );
+          // Hanya item yang punya entries yang membuka halaman section.
+          final entries = item.entries;
+          if (entries != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => SectionPage(
+                  title: item.name,
+                  icon: item.icon,
+                  color: item.color,
+                  entries: entries,
+                ),
+              ),
+            );
+          }
         },
         child: Container(
           padding: const EdgeInsets.all(8),
