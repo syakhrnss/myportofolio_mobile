@@ -8,34 +8,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  /// Bagian utama aplikasi untuk mengatur judul dan kombinasi warna tampilan aplikasi.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyPortfolio',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(
-          seedColor: Colors.indigo,
-          secondary: Colors.amber[700],
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          brightness: Brightness.dark,
+        ).copyWith(
+          primary: const Color(0xFFFFAFB9),
+          secondary: Colors.pink[400],
+          tertiary: Colors.blue[600],
         ),
+        scaffoldBackgroundColor: const Color(0xFF05014A),
+        cardTheme: const CardThemeData(color: Color(0xFF1A1470)),        
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
