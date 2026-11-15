@@ -1,6 +1,68 @@
-# myportofolio_mobile
+# MyPortfolio Mobile - Arsya Khairunissa Budiman
 
-A new Flutter project.
+| Information | Details |
+|---|---|
+| **Name** | Arsya Khairunissa Budiman |
+| **NPM** | 2506544076 |
+| **Class** | Pemrograman Berbasis Platform (PBP) E |
+| **Faculty** | Faculty of Computer Science, Universitas Indonesia |
+| **Lecturer** | Daya Adianto, S.Kom., M.Kom. |
+
+## About the Project
+
+MyPortfolio Mobile is the mobile extension of my personal portfolio. It is built with Flutter and continues directly from the code of Tutorial 08. The web version of this portfolio (Django, HTML5, and CSS3) lives in a separate repository: [syakhrnss/myportofolio](https://github.com/syakhrnss/myportofolio). This repository only contains the Flutter app, and its look follows the web portfolio's dark navy theme with purple and pink accents.
+
+## Weekly Progress
+
+| Week | Progress |
+|---|---|
+| 8 | Continued the `myportofolio_mobile` project from Tutorial 08, with `menu.dart` separated from `main.dart` and `MyHomePage` as a `StatelessWidget`. Replaced the sample data with my own identity in the three `InfoCard`s. Added a `color` attribute to the `ItemHomepage` model so every `ItemCard` has a unique background color without repeated conditionals. Added a styled `SnackBar`, a scrollable body, `const` constructors, docstrings, a dark navy theme based on the web portfolio, and navigable section pages as extra features. |
+
+## Documentation & AI Disclosure + Reflective Questions
+
+| No. | Assignment | Answer |
+|---|---|---|
+| 7 | Basic Flutter | [Tugas7.md](/reflection/TUGAS7.md) |
+
+## Setup and Running Locally
+
+### Requirements
+
+- Flutter SDK (a recent stable version; this project uses current Dart syntax)
+- Google Chrome, or an Android emulator or device
+- Git
+
+Run `flutter doctor` to check your setup. Chrome is enough to run this project, and the Android toolchain is optional.
+
+### Run the App
+
+Clone this repository:
+```bash
+git clone <repository-url>
+cd myportofolio_mobile
+```
+
+Install dependencies, analyze the code, and run:
+```bash
+flutter pub get
+flutter analyze
+flutter run -d chrome
+```
+
+While the app is running, press `r` in the terminal for hot reload, or `R` for hot restart (needed after changing static data such as the `items` list or the theme).
+
+## Git Workflow
+
+Work is split into feature branches and small commits written in the conventional commit style, for example:
+
+```
+feat: add color attribute to ItemHomepage model
+refactor: use const constructors and static const data
+fix: prevent layout overflow with scrollable body
+docs: add docstrings and remove boilerplate comments
+```
+
+Each feature branch is merged into `main` through a pull request.
 
 ## Getting Started
 
