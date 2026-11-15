@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/section_page.dart';
 
 /// Halaman utama aplikasi MyPortfolio Mobile.
 ///
@@ -137,8 +138,10 @@ class ItemHomepage {
   final String name;
   final IconData icon;
   final Color color;
+  final List<PortfolioEntry>? entries;
 
-  const ItemHomepage(this.name, this.icon, this.color);
+
+  const ItemHomepage(this.name, this.icon, this.color, {this.entries});
 }
 
 /// Kartu tombol aksi. Warna latar diambil dari [ItemHomepage.color],
