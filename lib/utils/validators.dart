@@ -33,9 +33,18 @@ String? validateRequiredDate(DateTime? date, {required String fieldName}) {
 
 /// Memeriksa tanggal selesai.
 ///
-/// Tanggal selesai wajib dipilih dan tidak boleh lebih awal dari
-/// tanggal mulai ([start]).
-String? validateEndDate({required DateTime? start, required DateTime? end}) {
+/// Jika [isOngoing] true (pendidikan masih berlangsung), tanggal selesai
+/// tidak diperlukan sehingga selalu dianggap valid. Jika tidak, tanggal
+/// selesai wajib dipilih dan tidak boleh lebih awal dari tanggal mulai
+/// ([start]).
+String? validateEndDate({
+  required DateTime? start,
+  required DateTime? end,
+  bool isOngoing = false,
+}) {
+  if (isOngoing) {
+    return null;
+  }
   if (end == null) {
     return "Tanggal selesai harus dipilih!";
   }

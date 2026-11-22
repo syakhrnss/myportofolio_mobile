@@ -28,6 +28,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
   DateTime? _startDate;
   DateTime? _endDate;
 
+  /// True jika pendidikan masih berlangsung (tanggal selesai dinonaktifkan).
+  bool _isOngoing = false;
+
   /// Pilihan jenjang pendidikan pada dropdown.
   final List<String> _levels = ['SMA/SMK', 'D3', 'S1', 'S2', 'S3', 'Lainnya'];
 
@@ -64,6 +67,19 @@ class _EducationFormPageState extends State<EducationFormPage> {
       } else {
         _endDate = picked;
         _endController.text = _formatDate(picked);
+      }
+    });
+  }
+
+  /// Mengubah status "Masih berlangsung".
+  ///
+  /// Saat diaktifkan, tanggal selesai dikosongkan karena tidak diperlukan.
+  void _toggleOngoing(bool value) {
+    setState(() {
+      _isOngoing = value;
+      if (value) {
+        _endDate = null;
+        _endController.clear();
       }
     });
   }
@@ -181,15 +197,26 @@ class _EducationFormPageState extends State<EducationFormPage> {
                 ),
               ),
 
+              // === Switch Masih Berlangsung ===
+              SwitchListTile(
+                title: const Text('Masih berlangsung'),
+                subtitle: const Text('Aktifkan jika masih berlangsung'),
+                value: _isOngoing,
+                onChanged: _toggleOngoing,
+              ),
+
               // === Tanggal Selesai ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   controller: _endController,
                   readOnly: true,
+                  enabled: !_isOngoing,
                   onTap: () => _pickDate(isStart: false),
                   decoration: InputDecoration(
-                    hintText: "Pilih tanggal selesai",
+                    hintText: _isOngoing
+                        ? "Tidak diperlukan"
+                        : "Pilih tanggal selesai",
                     labelText: "Tanggal Selesai",
                     suffixIcon: const Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
@@ -199,6 +226,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   validator: (_) => validateEndDate(
                     start: _startDate,
                     end: _endDate,
+                    isOngoing: _isOngoing,
                   ),
                 ),
               ),
