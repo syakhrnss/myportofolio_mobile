@@ -17,13 +17,13 @@ class MyHomePage extends StatelessWidget {
 
   /// Daftar menu aksi. Warna disimpan di model sehingga [ItemCard]
   /// tidak perlu logika pewarnaan sendiri.
-    static const List<ItemHomepage> items = [
+  static const List<ItemHomepage> items = [
     ItemHomepage(
       "Lihat Proyek",
       Icons.folder,
       Colors.blue,
       entries: [
-          PortfolioEntry("Smart Road Crack Inspection System", "AI-powered road crack inspection system using a MobileNetV2-based U-Net architecture to perform semantic segmentation and identify crack regions from road images"),
+        PortfolioEntry("Smart Road Crack Inspection System", "AI-powered road crack inspection system using a MobileNetV2-based U-Net architecture to perform semantic segmentation and identify crack regions from road images"),
         PortfolioEntry("Kitchenware Sales Dashboard", "Developed an interactive sales dashboard to analyze business performance, sales trends, product performance, and order completion metrics."),
       ],
     ),
@@ -44,6 +44,8 @@ class MyHomePage extends StatelessWidget {
         PortfolioEntry("Universitas Indonesia", "Sistem Informasi"),
       ],
     ),
+    // Kartu aksi untuk membuka formulir Education (Tugas 8).
+    ItemHomepage("Tambah Education", Icons.post_add,Color(0xFFF06292)),
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
@@ -126,8 +128,8 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+/// Kartu informasi yang menampilkan judul ([title]) dan isi ([content]).
 class InfoCard extends StatelessWidget {
-  // Kartu informasi yang menampilkan judul (title) dan isi (content).
   final String title;
   final String content;
 
@@ -165,7 +167,6 @@ class ItemHomepage {
   final IconData icon;
   final Color color;
   final List<PortfolioEntry>? entries;
-
 
   const ItemHomepage(this.name, this.icon, this.color, {this.entries});
 }
