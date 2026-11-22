@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myportofolio_mobile/menu.dart';
-import 'package:myportofolio_mobile/project_form.dart';
-import 'package:myportofolio_mobile/section_page.dart';
+import 'package:myportofolio_mobile/screens/menu.dart';
+import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/section_page.dart';
 
 /// Kartu tombol aksi. Warna latar diambil dari [ItemHomepage.color],
 /// dan menekannya memunculkan SnackBar dengan nama tombol terkait.
