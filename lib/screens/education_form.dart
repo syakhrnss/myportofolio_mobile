@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/utils/validators.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
 /// Halaman formulir untuk menambahkan data Education ke portofolio.
@@ -12,10 +13,13 @@ class EducationFormPage extends StatefulWidget {
   State<EducationFormPage> createState() => _EducationFormPageState();
 }
 
-/// State untuk [EducationFormPage] mengelola formulir.
+/// State untuk [EducationFormPage]: menyimpan isian dan mengelola formulir.
 class _EducationFormPageState extends State<EducationFormPage> {
-  /// Kunci untuk mengakses state Form (validate dan reset).
+  /// Kunci untuk mengakses state `Form` (validate dan reset).
   final _formKey = GlobalKey<FormState>();
+
+  String _institution = "";
+  String _major = "";
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +36,57 @@ class _EducationFormPageState extends State<EducationFormPage> {
       drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
-        // SingleChildScrollView membuat formulir bisa discroll di layar sempit.
-        child: const SingleChildScrollView(
+        // SingleChildScrollView membuat formulir bisa digulir di layar sempit.
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // === Nama Institusi ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Contoh: Universitas Indonesia",
+                    labelText: "Nama Institusi",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _institution = value!;
+                    });
+                  },
+                  validator: (String? value) => validateRequiredText(
+                    value,
+                    fieldName: "Nama institusi",
+                  ),
+                ),
+              ),
+
+              // === Jurusan ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Contoh: Sistem Informasi",
+                    labelText: "Jurusan / Program Studi",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _major = value!;
+                    });
+                  },
+                  validator: (String? value) => validateRequiredText(
+                    value,
+                    fieldName: "Jurusan",
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
