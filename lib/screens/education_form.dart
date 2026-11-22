@@ -5,7 +5,9 @@ import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 /// Halaman formulir untuk menambahkan data Education ke portofolio.
 ///
 /// Berupa [StatefulWidget] karena isian formulir (teks, dropdown, tanggal,
-/// switch) berubah-ubah selama pengguna mengisi.
+/// switch) berubah-ubah selama pengguna mengisi. Aturan validasi ada di
+/// lib/utils/validators.dart, sedangkan file ini hanya mengurus tampilan
+/// dan juga alur formulir.
 class EducationFormPage extends StatefulWidget {
   const EducationFormPage({super.key});
 
@@ -46,6 +48,22 @@ class _EducationFormPageState extends State<EducationFormPage> {
     final dd = date.day.toString().padLeft(2, '0');
     final mm = date.month.toString().padLeft(2, '0');
     return '$dd/$mm/${date.year}';
+  }
+
+  /// Membuat tampilan kolom isian yang seragam untuk semua input.
+  InputDecoration _buildDecoration({
+    required String label,
+    required String hint,
+    Widget? suffixIcon,
+  }) {
+    return InputDecoration(
+      hintText: hint,
+      labelText: label,
+      suffixIcon: suffixIcon,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+    );
   }
 
   /// Membuka kalender lalu menyimpan tanggal yang dipilih.
@@ -144,16 +162,14 @@ class _EducationFormPageState extends State<EducationFormPage> {
         title: const Center(
           child: Text('Add Education Form'),
         ),
-        // Warna diambil dari tema agar konsisten dengan halaman lain.
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
       ),
-      // Drawer yang sama dengan halaman utama.
       drawer: const LeftDrawer(),
+      // SingleChildScrollView membuat formulir bisa discroll di layar sempit
+      // atau saat keyboard tampil, sehingga tombol Simpan tetap terjangkau.
       body: Form(
         key: _formKey,
-        // SingleChildScrollView membuat formulir bisa digulir di layar sempit
-        // atau saat papan ketik tampil, sehingga tombol Simpan tetap terjangkau.
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(
@@ -163,12 +179,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Contoh: Universitas Indonesia",
-                    labelText: "Nama Institusi",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
+                  decoration: _buildDecoration(
+                    label: "Nama Institusi",
+                    hint: "Contoh: Universitas Indonesia",
                   ),
                   onChanged: (String? value) {
                     setState(() {
@@ -186,12 +199,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    labelText: "Jenjang",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
+                  decoration: _buildDecoration(label: "Jenjang", hint: ""),
                   initialValue: _level,
                   items: _levels
                       .map((level) => DropdownMenuItem(
@@ -211,12 +219,9 @@ class _EducationFormPageState extends State<EducationFormPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Contoh: Sistem Informasi",
-                    labelText: "Jurusan / Program Studi",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
+                  decoration: _buildDecoration(
+                    label: "Jurusan / Program Studi",
+                    hint: "Contoh: Sistem Informasi",
                   ),
                   onChanged: (String? value) {
                     setState(() {
@@ -237,13 +242,10 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   controller: _startController,
                   readOnly: true,
                   onTap: () => _pickDate(isStart: true),
-                  decoration: InputDecoration(
-                    hintText: "Pilih tanggal mulai",
-                    labelText: "Tanggal Mulai",
+                  decoration: _buildDecoration(
+                    label: "Tanggal Mulai",
+                    hint: "Pilih tanggal mulai",
                     suffixIcon: const Icon(Icons.calendar_today),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
                   ),
                   validator: (_) => validateRequiredDate(
                     _startDate,
@@ -268,15 +270,12 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   readOnly: true,
                   enabled: !_isOngoing,
                   onTap: () => _pickDate(isStart: false),
-                  decoration: InputDecoration(
-                    hintText: _isOngoing
+                  decoration: _buildDecoration(
+                    label: "Tanggal Selesai",
+                    hint: _isOngoing
                         ? "Tidak diperlukan"
                         : "Pilih tanggal selesai",
-                    labelText: "Tanggal Selesai",
                     suffixIcon: const Icon(Icons.calendar_today),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
                   ),
                   validator: (_) => validateEndDate(
                     start: _startDate,
@@ -298,7 +297,6 @@ class _EducationFormPageState extends State<EducationFormPage> {
                       ),
                     ),
                     onPressed: () {
-                      // Dialog hanya muncul jika semua input lolos validasi.
                       if (_formKey.currentState!.validate()) {
                         _showSummary();
                       }
