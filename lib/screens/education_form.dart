@@ -19,7 +19,11 @@ class _EducationFormPageState extends State<EducationFormPage> {
   final _formKey = GlobalKey<FormState>();
 
   String _institution = "";
+  String _level = "S1"; // default
   String _major = "";
+
+  /// Pilihan jenjang pendidikan pada dropdown.
+  final List<String> _levels = ['SMA/SMK', 'D3', 'S1', 'S2', 'S3', 'Lainnya'];
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +65,31 @@ class _EducationFormPageState extends State<EducationFormPage> {
                     value,
                     fieldName: "Nama institusi",
                   ),
+                ),
+              ),
+
+              // === Jenjang ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    labelText: "Jenjang",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  initialValue: _level,
+                  items: _levels
+                      .map((level) => DropdownMenuItem(
+                            value: level,
+                            child: Text(level),
+                          ))
+                      .toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _level = newValue!;
+                    });
+                  },
                 ),
               ),
 
