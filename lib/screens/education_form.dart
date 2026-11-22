@@ -4,8 +4,8 @@ import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
 /// Halaman formulir untuk menambahkan data Education ke portofolio.
 ///
-/// Berupa [StatefulWidget] karena isian formulir akan berubah-ubah
-/// selama pengguna mengisi.
+/// Berupa [StatefulWidget] karena isian formulir (teks, dropdown, tanggal,
+/// switch) berubah-ubah selama pengguna mengisi.
 class EducationFormPage extends StatefulWidget {
   const EducationFormPage({super.key});
 
@@ -84,6 +84,59 @@ class _EducationFormPageState extends State<EducationFormPage> {
     });
   }
 
+  /// Mengosongkan semua isian setelah dialog ditutup.
+  void _resetForm() {
+    _formKey.currentState!.reset();
+    setState(() {
+      _institution = "";
+      _level = "S1";
+      _major = "";
+      _startDate = null;
+      _endDate = null;
+      _isOngoing = false;
+      _startController.clear();
+      _endController.clear();
+    });
+  }
+
+  /// Menampilkan ringkasan isian dalam dialog.
+  ///
+  /// Hanya dipanggil setelah semua input lolos validasi.
+  void _showSummary() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Education berhasil ditambahkan!'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Institusi: $_institution'),
+                Text('Jenjang: $_level'),
+                Text('Jurusan: $_major'),
+                Text('Tanggal Mulai: ${_formatDate(_startDate!)}'),
+                Text(
+                  'Tanggal Selesai: '
+                  '${_isOngoing ? "Masih berlangsung" : _formatDate(_endDate!)}',
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: const Text('Tutup'),
+              onPressed: () {
+                Navigator.pop(context);
+                _resetForm();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,8 +152,10 @@ class _EducationFormPageState extends State<EducationFormPage> {
       drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
-        // SingleChildScrollView membuat formulir bisa digulir di layar sempit.
+        // SingleChildScrollView membuat formulir bisa digulir di layar sempit
+        // atau saat papan ketik tampil, sehingga tombol Simpan tetap terjangkau.
         child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -200,7 +255,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
               // === Switch Masih Berlangsung ===
               SwitchListTile(
                 title: const Text('Masih berlangsung'),
-                subtitle: const Text('Aktifkan jika masih berlangsung'),
+                subtitle: const Text('Aktifkan jika belum lulus'),
                 value: _isOngoing,
                 onChanged: _toggleOngoing,
               ),
@@ -230,6 +285,32 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   ),
                 ),
               ),
+
+              // === Tombol Simpan ===
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(
+                        Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
+                    onPressed: () {
+                      // Dialog hanya muncul jika semua input lolos validasi.
+                      if (_formKey.currentState!.validate()) {
+                        _showSummary();
+                      }
+                    },
+                    child: const Text(
+                      "Simpan",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
             ],
           ),
         ),
