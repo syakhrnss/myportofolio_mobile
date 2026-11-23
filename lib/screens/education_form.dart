@@ -60,9 +60,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
       hintText: hint,
       labelText: label,
       suffixIcon: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
     );
   }
 
@@ -159,9 +157,7 @@ class _EducationFormPageState extends State<EducationFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Add Education Form'),
-        ),
+        title: const Center(child: Text('Add Education Form')),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
       ),
@@ -183,15 +179,11 @@ class _EducationFormPageState extends State<EducationFormPage> {
                     label: "Nama Institusi",
                     hint: "Contoh: Universitas Indonesia",
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _institution = value!;
-                    });
+                  onChanged: (value) {
+                    _institution = value;
                   },
-                  validator: (String? value) => validateRequiredText(
-                    value,
-                    fieldName: "Nama institusi",
-                  ),
+                  validator: (String? value) =>
+                      validateRequiredText(value, fieldName: "Nama institusi"),
                 ),
               ),
 
@@ -202,15 +194,13 @@ class _EducationFormPageState extends State<EducationFormPage> {
                   decoration: _buildDecoration(label: "Jenjang", hint: ""),
                   initialValue: _level,
                   items: _levels
-                      .map((level) => DropdownMenuItem(
-                            value: level,
-                            child: Text(level),
-                          ))
+                      .map(
+                        (level) =>
+                            DropdownMenuItem(value: level, child: Text(level)),
+                      )
                       .toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _level = newValue!;
-                    });
+                  onChanged: (newValue) {
+                    _level = newValue ?? _level;
                   },
                 ),
               ),
@@ -223,15 +213,11 @@ class _EducationFormPageState extends State<EducationFormPage> {
                     label: "Jurusan / Program Studi",
                     hint: "Contoh: Sistem Informasi",
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _major = value!;
-                    });
+                  onChanged: (value) {
+                    _major = value;
                   },
-                  validator: (String? value) => validateRequiredText(
-                    value,
-                    fieldName: "Jurusan",
-                  ),
+                  validator: (String? value) =>
+                      validateRequiredText(value, fieldName: "Jurusan"),
                 ),
               ),
 
