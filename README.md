@@ -17,12 +17,15 @@ MyPortfolio Mobile is the mobile extension of my personal portfolio. It is built
 | Week | Progress |
 |---|---|
 | 8 | Continued the `myportofolio_mobile` project from Tutorial 08, with `menu.dart` separated from `main.dart` and `MyHomePage` as a `StatelessWidget`. Replaced the sample data with my own identity in the three `InfoCard`s. Added a `color` attribute to the `ItemHomepage` model so every `ItemCard` has a unique background color without repeated conditionals. Added a styled `SnackBar`, a scrollable body, `const` constructors, docstrings, a dark navy theme based on the web portfolio, and navigable section pages as extra features. |
+| 9 | Continued the `myportofolio_mobile` project from Tutorial 09 by adding an Add Education form (`education_form.dart`) and a `LeftDrawer` for navigation. The form uses `Form` with `GlobalKey<FormState>`, `TextFormField`, `DropdownButtonFormField`, and `showDatePicker()`. Moved validation rules into `lib/utils/validators.dart`, and added an "ongoing" `SwitchListTile` that disables the end date field. The form is wrapped in a `SingleChildScrollView`, shows a summary `AlertDialog` after a valid submit, and keeps the same theme as the rest of the app.|
 
 ## Documentation & AI Disclosure + Reflective Questions
 
 | No. | Assignment | Answer |
 |---|---|---|
 | 7 | Basic Flutter | [Tugas7.md](/reflection/TUGAS7.md) |
+| 8 | Flutter Navigation, Layouts, Forms, and Input Elements | [Tugas7.md](/reflection/TUGAS8.md) |
+
 
 ## Setup and Running Locally
 
