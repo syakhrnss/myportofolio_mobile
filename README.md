@@ -24,7 +24,7 @@ MyPortfolio Mobile is the mobile extension of my personal portfolio. It is built
 | No. | Assignment | Answer |
 |---|---|---|
 | 7 | Basic Flutter | [Tugas7.md](/reflection/TUGAS7.md) |
-| 8 | Flutter Navigation, Layouts, Forms, and Input Elements | [Tugas7.md](/reflection/TUGAS8.md) |
+| 8 | Flutter Navigation, Layouts, Forms, and Input Elements | [Tugas8.md](/reflection/TUGAS8.md) |
 
 
 ## Setup and Running Locally
