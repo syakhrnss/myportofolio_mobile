@@ -148,7 +148,7 @@ Saya menggunakan ChatGPT dengan memberikan instruksi tugas, rubrik penilaian, se
 
 **Log prompting:**
 
-**001 / 6 - Memahami fungsi widget formulir Flutter:** [Link ]() Membantu saya memahami fungsi dan cara kerja widget Flutter yang digunakan dalam formulir, seperti Form dan GlobalKey<FormState>.
+**001 / 6 - Memahami fungsi widget formulir Flutter:** [Link](https://chatgpt.com/share/6b03b7e1-4ad0-83ec-8770-83d980124202) Membantu saya memahami fungsi dan cara kerja widget Flutter yang digunakan dalam formulir, seperti Form dan GlobalKey<FormState>.
 
 **002 / 6 - Memvalidasi pemisahan fungsi validasi:** [Link](https://chatgpt.com/share/6b03b7e1-4ad0-83ec-8770-83d980124202) Membantu memvalidasi ide untuk memisahkan fungsi validasi ke dalam file tersendiri, yaitu lib/utils/validators.dart, agar kode pada education_form.dart lebih terstruktur dan mudah dikelola.
 
