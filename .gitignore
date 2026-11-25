@@ -49,3 +49,5 @@ app.*.map.json
 
 # Generated json_serializable files
 *.g.dart
+
+android/build/
