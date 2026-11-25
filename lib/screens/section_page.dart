@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Satu baris konten pada [SectionPage] misalnya satu proyek atau satu experience.
 class PortfolioEntry {
