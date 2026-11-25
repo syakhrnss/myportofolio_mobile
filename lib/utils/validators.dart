@@ -53,3 +53,26 @@ String? validateEndDate({
   }
   return null;
 }
+
+/// Memeriksa format URL (harus diawali http:// atau https://).
+///
+/// Jika [required] false, isian kosong dianggap valid (untuk kolom opsional).
+String? validateUrl(
+  String? value, {
+  required String fieldName,
+  bool required = true,
+}) {
+  final text = value?.trim() ?? '';
+  if (text.isEmpty) {
+    return required ? "$fieldName tidak boleh kosong!" : null;
+  }
+  final uri = Uri.tryParse(text);
+  final valid =
+      uri != null &&
+      (uri.scheme == 'http' || uri.scheme == 'https') &&
+      uri.host.isNotEmpty;
+  if (!valid) {
+    return "$fieldName harus berupa URL yang valid (diawali http:// atau https://)!";
+  }
+  return null;
+}

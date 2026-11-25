@@ -28,10 +28,7 @@ class SectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: color,
         // Membuat judul dan panah kembali otomatis berwarna putih.
         foregroundColor: Colors.white,

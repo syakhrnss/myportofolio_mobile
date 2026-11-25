@@ -18,34 +18,27 @@ class MyHomePage extends StatelessWidget {
   /// Daftar menu aksi. Warna disimpan di model sehingga [ItemCard]
   /// tidak perlu logika pewarnaan sendiri.
   static const List<ItemHomepage> items = [
-    ItemHomepage(
-      "Lihat Proyek",
-      Icons.folder,
-      Colors.blue,
-      entries: [
-        PortfolioEntry("Smart Road Crack Inspection System", "AI-powered road crack inspection system using a MobileNetV2-based U-Net architecture to perform semantic segmentation and identify crack regions from road images"),
-        PortfolioEntry("Kitchenware Sales Dashboard", "Developed an interactive sales dashboard to analyze business performance, sales trends, product performance, and order completion metrics."),
-      ],
-    ),
+    ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
     ItemHomepage(
       "Lihat Experience",
       Icons.work,
       Colors.orange,
       entries: [
-        PortfolioEntry("Staff of Data Science Academy", "Invited and coordinated with mentors and guest speakers to support the execution of bootcamp sessions."),
+        PortfolioEntry(
+          "Staff of Data Science Academy",
+          "Invited and coordinated with mentors and guest speakers to support the execution of bootcamp sessions.",
+        ),
       ],
     ),
     ItemHomepage(
       "Lihat Education",
       Icons.school,
       Colors.purple,
-      entries: [
-        PortfolioEntry("Universitas Indonesia", "Sistem Informasi"),
-      ],
+      entries: [PortfolioEntry("Universitas Indonesia", "Sistem Informasi")],
     ),
     // Kartu aksi untuk membuka formulir Education (Tugas 8).
-    ItemHomepage("Tambah Education", Icons.post_add,Color(0xFFF06292)),
+    ItemHomepage("Tambah Education", Icons.post_add, Color(0xFFF06292)),
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
@@ -57,10 +50,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'MyPortfolio',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -148,10 +138,7 @@ class InfoCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8.0),
             Text(content, textAlign: TextAlign.center),
           ],
